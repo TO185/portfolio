@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Toufik Gafur Shaikh — Portfolio</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -21,28 +20,40 @@
     .card{background:rgba(255,255,255,0.02);padding:18px;border-radius:10px}
     .section-title{font-size:13px;color:var(--muted);letter-spacing:0.6px;margin-bottom:8px}
     .meta{font-size:14px;color:#d7e9f3}
-    ul{padding-left:18px;margin:8px 0}
-    li{margin-bottom:6px}
     .projects a{display:inline-block;margin:6px 0;padding:8px 10px;background:rgba(6,182,212,0.08);border-radius:8px;color:var(--accent);text-decoration:none;font-weight:600}
     .projects a:hover{background:rgba(6,182,212,0.12)}
     .contact{font-size:14px;color:var(--muted)}
     footer{margin-top:16px;color:var(--muted);font-size:13px;text-align:center}
 
-    /* Download Button Styling */
-    .download-btn{
+    .pdf-btn{
       padding:8px 14px;
       background:var(--accent);
       color:#042024;
       font-weight:700;
       border-radius:8px;
+      border:0;
       text-decoration:none;
+      cursor:pointer;
       display:inline-block;
       margin-top:10px;
       transition:0.25s;
     }
-    .download-btn:hover{
+    .pdf-btn:hover{
       opacity:0.85;
       transform:scale(1.03);
+    }
+
+    @media print {
+      body {
+        background: white !important;
+      }
+      .container {
+        box-shadow: none !important;
+        background: white !important;
+      }
+      .pdf-btn, #copyEmail {
+        display: none !important;
+      }
     }
 
     @media(max-width:820px){
@@ -60,9 +71,10 @@
         <div class="sub">Kurduwadi, Maharashtra • Available for internships & entry-level roles</div>
         <div class="sub" style="margin-top:8px">Email: <strong>toufikshaikh185@gmail.com</strong> • Phone: <strong>8308466127</strong></div>
 
-        <a href="Toufik_Shaikh_Resume.pdf" download class="download-btn">
-          Download Résumé
-        </a>
+        <!-- DOWNLOAD PORTFOLIO AS PDF BUTTON -->
+        <button onclick="window.print()" class="pdf-btn">
+          Download Portfolio as PDF
+        </button>
       </div>
     </header>
 
