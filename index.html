@@ -4,162 +4,488 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-
     <title>Toufik Gafur Shaikh — Portfolio</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet" />
 </head>
 
 <body>
 
-    <div class="container" role="main">
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
 
-        <header>
-            <div class="avatar">TS</div>
+    <div class="noise"></div>
 
-            <div>
-                <h1>Toufik Gafur Shaikh</h1>
-
-                <div class="sub">
-                    Kurduwadi, Maharashtra • Available for internships & entry-level roles
-                </div>
-
-                <div class="sub" style="margin-top:8px">
-                    Email: <strong>toufikshaikh185@gmail.com</strong> •
-                    Phone: <strong>8308466127</strong>
-                </div>
-
-                <button onclick="print()" class="pdf-btn">
-                    Download Portfolio as PDF
-                </button>
-
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-bar"></div>
+            <div class="preloader-text">
+                <span class="mono">Loading Portfolio</span>
+                <span class="preloader-percent" id="preloaderPercent">0%</span>
             </div>
-        </header>
-
-
-        <div class="grid">
-
-            <div>
-
-                <section class="card">
-                    <div class="section-title">Career Objective</div>
-
-                    <div class="meta">
-                        Motivated Computer Science graduate seeking an opportunity to apply my skills in analytical
-                        thinking, programming, and project development. Keen interest in building interactive
-                        applications and deriving insights from data.
-                    </div>
-
-                </section>
-
-
-                <section class="card">
-                    <div class="section-title">Education</div>
-
-                    <div class="meta">
-                        Bachelor of Technology (B.Tech) in Computer Science<br>
-                        VVPIT Solapur (DBATU University)<br>
-                        Expected Graduation: 2025 • Percentage: 74%
-                    </div>
-
-                </section>
-
-
-                <section class="card">
-                    <div class="section-title">Technical Skills</div>
-
-                    <div class="meta">
-                        <strong>Programming & Data:</strong> Python, SQL<br>
-                        <strong>Libraries & Tools:</strong> Pandas, NumPy, Matplotlib, Seaborn, Power BI<br>
-                        <strong>Other:</strong> Problem-solving, Logical reasoning, Debugging
-                    </div>
-
-                </section>
-
-
-                <section class="card projects">
-
-                    <div class="section-title">Projects</div>
-
-                    <div>
-                        <a href="https://to185.github.io/Tic-Tac-Toe/" target="_blank">
-                            Tic Tac Toe — Live Demo
-                        </a>
-
-                        <a href="https://to185.github.io/sudoku/" target="_blank">
-                            Sudoku — Live Demo
-                        </a>
-
-                        <a href="https://to185.github.io/Color-Gradient-Puzzle/" target="_blank">
-                            Color Gradient Puzzle — Live Demo
-                        </a>
-
-                        <a href="https://to185.github.io/Data_Analysis/" target="_blank">
-                            Data Analysis Projects — Live Demo
-                        </a>
-                    </div>
-
-                </section>
-
-
-                <section class="card">
-                    <div class="section-title">Languages</div>
-                    <div class="meta">English • Hindi • Marathi</div>
-                </section>
-
-
-                <section class="card">
-                    <div class="section-title">Hobbies & Interests</div>
-                    <div class="meta">
-                        Programming & Problem-solving • Gaming & Puzzles • Data Visualization
-                    </div>
-                </section>
-
-            </div>
-
-
-            <aside>
-
-                <div class="card">
-                    <div class="section-title">Quick Contact</div>
-
-                    <div class="contact">
-                        Email: <span id="email">toufikshaikh185@gmail.com</span>
-                    </div>
-
-                    <div class="contact">
-                        Phone: <span id="phone">8308466127</span>
-                    </div>
-
-                    <button id="copyEmail">Copy Email</button>
-
-                </div>
-
-
-                <div class="card">
-                    <div class="section-title">Availability</div>
-
-                    <div class="meta">
-                        Open to internships and entry-level roles. Eager to learn new technologies and contribute to
-                        team success.
-                    </div>
-
-                </div>
-
-            </aside>
-
         </div>
-
-        <footer>
-            Made with ❤️ • Toufik G. Shaikh
-        </footer>
-
     </div>
 
-    <script src="script.js"></script>
+    <nav class="nav" id="nav">
+        <div class="nav-logo">Toufik<span class="dot">.</span></div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link" data-text="About">About</a>
+            <a href="#skills" class="nav-link" data-text="Skills">Skills</a>
+            <a href="#projects" class="nav-link" data-text="Projects">Projects</a>
+            <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
+        </div>
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            <span class="mono">Available for hire</span>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span>
+        </button>
+    </nav>
 
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mob-link">About</a>
+        <a href="#skills" class="mob-link">Skills</a>
+        <a href="#projects" class="mob-link">Projects</a>
+        <a href="#contact" class="mob-link">Contact</a>
+    </div>
+
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <canvas id="gridCanvas"></canvas>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-tag reveal-up">
+                <span class="mono">CS Graduate · Kurduwadi, MH</span>
+            </div>
+
+            <h1 class="hero-name">
+                <span class="line reveal-up" style="--d:0.1s">Toufik</span>
+                <span class="line reveal-up" style="--d:0.2s">Gafur</span>
+                <span class="line reveal-up accent-line" style="--d:0.3s">Shaikh<span class="dot">.</span></span>
+            </h1>
+
+            <p class="hero-sub reveal-up" style="--d:0.4s">
+                Builder of interactive applications &amp; data-driven insights. <br>
+                Turning ideas into pixels and code.
+            </p>
+
+            <div class="hero-cta reveal-up" style="--d:0.5s">
+                <a href="#projects" class="btn-primary">
+                    <span>View Work</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#contact" class="btn-ghost">Get In Touch</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <span class="mono">Scroll</span>
+        </div>
+
+        <div class="hero-badge reveal-up" style="--d:0.6s">
+            <div class="badge-inner">
+                <svg viewBox="0 0 100 100" class="badge-ring">
+                    <path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+                    <text>
+                        <textPath href="#circlePath">COMPUTER SCIENCE · B.TECH · 2025 ·</textPath>
+                    </text>
+                </svg>
+                <div class="badge-icon">74%</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num mono">01</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="big-text reveal-up">
+                        Motivated Computer Science graduate with a passion for building <em>interactive
+                            applications</em> and deriving <em>meaningful insights</em> from data.
+                    </p>
+                    <p class="body-text reveal-up" style="--d:0.1s">
+                        Studying at VVPIT Solapur under DBATU University, I have developed strong foundations in Python,
+                        SQL, and data visualization. I thrive at the intersection of logic and creativity — whether
+                        that's solving algorithmic puzzles or crafting seamless user experiences.
+                    </p>
+                    <div class="about-details reveal-up" style="--d:0.2s">
+                        <div class="detail-item">
+                            <span class="mono detail-label">University</span>
+                            <span>VVPIT Solapur (DBATU)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="mono detail-label">Degree</span>
+                            <span>B.Tech Computer Science</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="mono detail-label">Graduation</span>
+                            <span>2025</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="mono detail-label">Languages</span>
+                            <span>English · Hindi · Marathi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual reveal-up" style="--d:0.3s">
+                    <div class="avatar-card">
+                        <div class="avatar-circle">
+                            <span>Toufik</span>
+                        </div>
+                        <div class="avatar-glow"></div>
+                    </div>
+                    <div class="floating-tags">
+                        <span class="ftag" style="--r: 0deg; --dist: 120px">Python</span>
+                        <span class="ftag" style="--r: 90deg; --dist: 140px">Web Technology</span>
+                        <span class="ftag" style="--r: 60deg; --dist: 130px">SQL</span>
+                        <span class="ftag" style="--r: 120deg; --dist: 120px">Power BI</span>
+                        <span class="ftag" style="--r: 180deg; --dist: 130px">Pandas</span>
+                        <span class="ftag" style="--r: 240deg; --dist: 120px">NumPy</span>
+                        <span class="ftag" style="--r: 300deg; --dist: 130px">Matplotlib</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section dark-section" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num mono">02</span>
+                <h2 class="section-title">Technical Skills</h2>
+            </div>
+
+            <div class="skills-grid">
+
+                <div class="skill-card reveal-up" style="--d:0s">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M50,5 C36,5 28,11 28,22 L28,38 L50,38 L50,42 L18,42 C7,42 2,50 2,64 C2,78 7,86 18,86 L28,86 L28,72 L50,72 L50,76 L72,76 C83,76 98,68 98,54 C98,40 83,32 72,32 L62,32 L62,46 L50,46 L50,42 L62,42 L62,32 L50,32 L50,5 Z"
+                                fill="#3776AB" />
+                            <path
+                                d="M50,95 C64,95 72,89 72,78 L72,62 L50,62 L50,58 L82,58 C93,58 98,50 98,36 C98,22 93,14 82,14 L72,14 L72,28 L50,28 L50,24 L28,24 C17,24 2,32 2,46 C2,60 17,68 28,68 L38,68 L38,54 L50,54 L50,58 L38,58 L38,68 L50,68 L50,95 Z"
+                                fill="#FFD43B" />
+                            <circle cx="38" cy="22" r="5" fill="#FFD43B" />
+                            <circle cx="62" cy="78" r="5" fill="#3776AB" />
+                        </svg>
+                    </div>
+                    <h3>Python</h3>
+                    <p>Core language for scripting, data processing, and automation.</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--w:65%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" style="--d:0.1s">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,0 90,0 82,90 50,100 18,90" fill="#E44D26" />
+                            <polygon points="50,10 50,92 74,85 82,0" fill="#F16529" />
+                            <polygon points="30,40 32,60 50,60 50,75 68,70 70,40" fill="#EBEBEB" />
+                            <polygon points="50,40 50,60 68,60 68,40" fill="#fff" />
+                            <polygon points="32,60 34,78 50,83 50,75 50,75 37,72" fill="#EBEBEB" />
+                            <polygon points="50,75 50,83 66,78 68,60 50,60" fill="#fff" />
+                        </svg>
+                    </div>
+                    <h3>Web Technology</h3>
+                    <p>Building responsive and interactive web applications.</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--w:65%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" style="--d:0.1s">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="50" cy="22" rx="36" ry="13" fill="#00758F" />
+                            <rect x="14" y="22" width="72" height="18" fill="#00758F" />
+                            <ellipse cx="50" cy="40" rx="36" ry="13" fill="#00758F" />
+                            <ellipse cx="50" cy="40" rx="36" ry="13" fill="none" stroke="#F29111" stroke-width="2" />
+                            <rect x="14" y="40" width="72" height="18" fill="#00758F" />
+                            <ellipse cx="50" cy="58" rx="36" ry="13" fill="#00758F" />
+                            <ellipse cx="50" cy="58" rx="36" ry="13" fill="none" stroke="#F29111" stroke-width="2" />
+                            <rect x="14" y="58" width="72" height="18" fill="#00758F" />
+                            <ellipse cx="50" cy="76" rx="36" ry="13" fill="#00758F" />
+                            <ellipse cx="50" cy="76" rx="36" ry="13" fill="none" stroke="#F29111" stroke-width="2" />
+                            <ellipse cx="50" cy="22" rx="36" ry="13" fill="none" stroke="#F29111" stroke-width="2" />
+                            <text x="50" y="26" text-anchor="middle" fill="#fff" font-size="11" font-family="monospace"
+                                font-weight="bold">SQL</text>
+                        </svg>
+                    </div>
+                    <h3>SQL</h3>
+                    <p>Querying, aggregating and managing relational databases.</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--w:65%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" style="--d:0.2s">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="8" width="84" height="72" rx="4" fill="#1A1A2E" stroke="#444"
+                                stroke-width="1.5" />
+                            <line x1="18" y1="72" x2="18" y2="15" stroke="#555" stroke-width="1" />
+                            <line x1="18" y1="72" x2="85" y2="72" stroke="#555" stroke-width="1" />
+                            <rect x="24" y="45" width="10" height="27" rx="1" fill="#4C72B0" opacity="0.9" />
+                            <rect x="38" y="28" width="10" height="44" rx="1" fill="#DD8452" opacity="0.9" />
+                            <rect x="52" y="35" width="10" height="37" rx="1" fill="#55A868" opacity="0.9" />
+                            <rect x="66" y="20" width="10" height="52" rx="1" fill="#C44E52" opacity="0.9" />
+                            <polyline points="29,55 43,38 57,44 71,30" fill="none" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="20" cy="88" r="4" fill="#4C72B0" />
+                            <circle cx="35" cy="88" r="4" fill="#DD8452" />
+                            <circle cx="50" cy="88" r="4" fill="#55A868" />
+                            <circle cx="65" cy="88" r="4" fill="#C44E52" />
+                        </svg>
+                    </div>
+                    <h3>Data Visualization</h3>
+                    <p>Matplotlib, Seaborn, Power BI — transforming numbers into stories.</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--w:65%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" style="--d:0.3s">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="15" width="20" height="70" rx="5" fill="#150458" />
+                            <rect x="40" y="28" width="20" height="57" rx="5" fill="#E70488" />
+                            <rect x="66" y="15" width="20" height="70" rx="5" fill="#150458" />
+                            <text x="50" y="98" text-anchor="middle" font-size="9" fill="#E70488"
+                                font-family="monospace" font-weight="bold">pandas + numpy</text>
+                        </svg>
+                    </div>
+                    <h3>Pandas &amp; NumPy</h3>
+                    <p>Data wrangling, numerical computation and analysis pipelines.</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--w:65%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" style="--d:0.4s">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="42" r="26" fill="none" stroke="#F5A623" stroke-width="3" />
+                            <path d="M34,52 Q34,70 42,75 L58,75 Q66,70 66,52 Z" fill="#F5A623" opacity="0.35" />
+                            <path d="M34,52 Q34,70 42,75 L58,75 Q66,70 66,52" fill="none" stroke="#F5A623"
+                                stroke-width="2.5" />
+                            <rect x="38" y="75" width="24" height="7" rx="2" fill="#F5A623" />
+                            <rect x="40" y="83" width="20" height="6" rx="2" fill="#F5A623" opacity="0.8" />
+                            <rect x="43" y="90" width="14" height="6" rx="3" fill="#F5A623" opacity="0.55" />
+                            <line x1="50" y1="10" x2="50" y2="4" stroke="#F5A623" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <line x1="28" y1="18" x2="23" y2="13" stroke="#F5A623" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <line x1="72" y1="18" x2="77" y2="13" stroke="#F5A623" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <line x1="16" y1="42" x2="10" y2="42" stroke="#F5A623" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <line x1="84" y1="42" x2="90" y2="42" stroke="#F5A623" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Problem Solving</h3>
+                    <p>Logical reasoning, debugging, and algorithmic thinking.</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--w:65%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal-up" style="--d:0.5s">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="58" y="10" width="28" height="80" rx="4" fill="#F2C811" />
+                            <rect x="36" y="28" width="18" height="62" rx="4" fill="#F2C811" opacity="0.75" />
+                            <rect x="14" y="48" width="18" height="42" rx="4" fill="#F2C811" opacity="0.5" />
+                            <line x1="8" y1="92" x2="92" y2="92" stroke="#F2C811" stroke-width="2.5"
+                                stroke-linecap="round" opacity="0.4" />
+                        </svg>
+                    </div>
+                    <h3>Power BI</h3>
+                    <p>Building interactive dashboards and business intelligence reports.</p>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="--w:65%"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num mono">03</span>
+                <h2 class="section-title">Projects</h2>
+            </div>
+
+            <div class="projects-list">
+
+                <a href="https://to185.github.io/Tic-Tac-Toe/" target="_blank" class="project-item reveal-up"
+                    style="--d:0s">
+                    <div class="project-num mono">01</div>
+                    <div class="project-info">
+                        <h3>Tic Tac Toe</h3>
+                        <p>Classic two-player game with clean UI, win detection, and game state management.</p>
+                        <div class="project-tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
+                    </div>
+                </a>
+
+                <a href="https://to185.github.io/sudoku/" target="_blank" class="project-item reveal-up"
+                    style="--d:0.1s">
+                    <div class="project-num mono">02</div>
+                    <div class="project-info">
+                        <h3>Sudoku</h3>
+                        <p>Interactive Sudoku puzzle game with validation, hint system, and difficulty levels.</p>
+                        <div class="project-tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
+                    </div>
+                </a>
+
+                <a href="https://to185.github.io/Color-Gradient-Puzzle/" target="_blank" class="project-item reveal-up"
+                    style="--d:0.2s">
+                    <div class="project-num mono">03</div>
+                    <div class="project-info">
+                        <h3>Color Gradient Puzzle</h3>
+                        <p>A unique colour-matching brain teaser with gradient transitions and score tracking.</p>
+                        <div class="project-tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
+                    </div>
+                </a>
+
+                <a href="https://github.com/TO185/Data_Analysis.git" target="_blank" class="project-item reveal-up"
+                    style="--d:0.3s">
+                    <div class="project-num mono">04</div>
+                    <div class="project-info">
+                        <h3>Data Analysis Projects</h3>
+                        <p>Collection of data analysis notebooks using Python, Pandas, and visualization libraries.</p>
+                        <div class="project-tags">
+                            <span>Python</span><span>Pandas</span><span>Matplotlib</span><span>NumPy</span><span>Power
+                                BI</span>
+                        </div>
+                    </div>
+                    <div class="project-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section dark-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-num mono">04</span>
+                <h2 class="section-title">Contact</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-left reveal-up">
+                    <p class="big-text">Open to internships &amp; entry-level roles. Let's build something together.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <span class="mono">Email</span>
+                            <a href="mailto:toufikshaikh185@gmail.com"
+                                class="contact-link">toufikshaikh185@gmail.com</a>
+                            <button class="copy-btn" data-copy="toufikshaikh185@gmail.com" id="copyEmailBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                                </svg>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="contact-item">
+                            <span class="mono">Phone</span>
+                            <a href="tel:8308466127" class="contact-link">+91 8308466127</a>
+                            <button class="copy-btn" data-copy="8308466127">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                                </svg>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <div class="contact-item">
+                            <span class="mono">Location</span>
+                            <span class="contact-link">Kurduwadi, Maharashtra</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-right reveal-up" style="--d:0.2s">
+                    <div class="availability-card">
+                        <div class="avail-header">
+                            <span class="status-dot"></span>
+                            <span class="mono">Currently Available</span>
+                        </div>
+                        <p>Looking for opportunities in:</p>
+                        <ul>
+                            <li>Data Analysis </li>
+                            <li>Python Development</li>
+                            <li>Frontend / Full-Stack Development</li>
+                            <li>Business Intelligence</li>
+                        </ul>
+                        <button class="btn-primary full-btn"
+                            onclick="window.location.href='mailto:toufikshaikh185@gmail.com'">
+                            <span>Send an Email</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">Toufik<span class="dot">.</span></div>
+            <div class="mono footer-copy">Toufik Gafur Shaikh © 2025</div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
